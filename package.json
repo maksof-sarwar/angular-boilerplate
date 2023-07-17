@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prepare": "npx simple-git-hooks",
     "ng": "ng",
     "dev": "ng serve",
     "dev:host": "ng serve --host 0.0.0.0 --disable-host-check",
@@ -13,24 +12,9 @@
     "test:headless": "ng test --watch=false --browsers ChromeHeadless",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:staged": "pnpm lint-staged",
     "stylelint": "stylelint **/*.{css,pcss,less,scss,sass} --quiet-deprecation-warnings",
     "stylelint:fix": "stylelint **/*.{css,pcss,less,scss,sass} --quiet-deprecation-warnings --fix",
     "format": "prettier --write ."
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged",
-    "pre-push": "pnpm build"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "pnpm lint:fix",
-      "pnpm prettier"
-    ],
-    "*.{css,pcss,less,scss,sass}": [
-      "pnpm stylelint:fix",
-      "pnpm prettier"
-    ]
   },
   "dependencies": {
     "@angular/animations": "^16.0.0",
@@ -74,12 +58,10 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "lint-staged": "^13.2.2",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
     "prettier-eslint": "^15.0.1",
     "prettier-plugin-tailwindcss": "^0.2.8",
-    "simple-git-hooks": "^2.8.1",
     "stylelint": "^15.6.1",
     "tailwindcss": "^3.3.2",
     "typescript": "~5.0.2"
