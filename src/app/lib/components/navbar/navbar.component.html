@@ -1,0 +1,28 @@
+<header class="bg-color-base/80 z-10 border-b border-color-base py-2 backdrop-blur">
+    <div class="center container mx-auto flex h-full flex-wrap items-center justify-between gap-2">
+        <app-logo />
+
+        <nav class="flex items-center space-x-2">
+            <app-pick-language></app-pick-language>
+
+            <ng-container *ngIf="isAuthenticated(); else notAuthenticated">
+                <app-account-menu />
+            </ng-container>
+
+            <ng-template #notAuthenticated>
+                <a
+                    [routerLink]="['/auth/login']"
+                    class="button button-sm button-text"
+                >
+                    Login
+                </a>
+                <a
+                    [routerLink]="['/auth/register']"
+                    class="button button-sm button-primary"
+                >
+                    Register
+                </a>
+            </ng-template>
+        </nav>
+    </div>
+</header>

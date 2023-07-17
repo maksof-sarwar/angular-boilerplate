@@ -1,0 +1,42 @@
+<ng-container *transloco="let t">
+    <div class="flex flex-col gap-y-12">
+        <section>
+            <h4>{{ t('appearance.sections.background.title') }}</h4>
+
+            <div class="mt-4 max-w-xs">
+                <app-pick-schema orientation="vertical" />
+            </div>
+        </section>
+
+        <section>
+            <h4>{{ t('appearance.sections.primaryColor.title') }}</h4>
+
+            <div class="text-color-base-accent">{{ currentPrimaryColor() | titlecase }}</div>
+
+            <div class="mt-4">
+                <app-pick-primary-color />
+            </div>
+        </section>
+
+        <section>
+            <h4>{{ t('appearance.sections.fontSize.title') }}</h4>
+
+            <div class="mt-4">
+                <app-pick-font-size />
+            </div>
+        </section>
+
+        <section>
+            <h4>{{ t('appearance.sections.reset.title') }}</h4>
+
+            <div class="mt-4">
+                <button
+                    class="button button-primary"
+                    (click)="handleReset()"
+                >
+                    {{ t('appearance.sections.reset.button.text') }}
+                </button>
+            </div>
+        </section>
+    </div>
+</ng-container>

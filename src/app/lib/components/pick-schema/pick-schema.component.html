@@ -1,0 +1,40 @@
+<ng-container *transloco="let t">
+    <div
+        class="flex flex-wrap gap-2"
+        [ngClass]="{
+            'flex-col': orientation === 'vertical'
+        }"
+    >
+        <label
+            *ngFor="let schema of availableSchemas"
+            role="button"
+            tabindex="0"
+            [title]="t('pick-schema.' + schema)"
+            class="button"
+            [ngClass]="{
+                'button-primary': schema === currentSchema()
+            }"
+        >
+            <input
+                type="radio"
+                name="schema"
+                [checked]="schema === currentSchema()"
+                [ngModel]="schema"
+                (ngModelChange)="handleSchemaChange(schema)"
+                class="hidden"
+            />
+
+            <span
+                [ngClass]="{
+                'icon-[carbon--screen]': schema === SCHEMA.System,                    
+                'icon-[carbon--sun]': schema === SCHEMA.Light,                    
+                'icon-[carbon--moon]': schema === SCHEMA.Dark,                    
+            }"
+            ></span>
+
+            <span *ngIf="displayCaptions">
+                {{ t('pick-schema.' + schema) }}
+            </span>
+        </label>
+    </div>
+</ng-container>

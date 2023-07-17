@@ -1,0 +1,95 @@
+<ng-container *ngIf="currentSession() as session">
+    <button
+        [cdkMenuTriggerFor]="menu"
+        [cdkMenuPosition]="menuPosition"
+        class="button"
+    >
+        <span class="icon-[ph--fingerprint] !text-2xl"></span>
+
+        <span class="hidden md:inline-block">{{ session.user.username }}</span>
+
+        <span class="icon-[bx--bxs-chevron-down] ml-2 !text-lg"></span>
+    </button>
+
+    <ng-template #menu>
+        <div cdkMenu>
+            <a
+                cdkMenuItem
+                routerLink="/settings/account"
+            >
+                <div class="mb-2 font-semibold">{{ session.user.email }}</div>
+
+                <div class="flex items-center">
+                    <span class="relative mr-3 flex h-3 w-3">
+                        <span
+                            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary-400 opacity-75"
+                        ></span>
+                        <span class="relative inline-flex h-3 w-3 rounded-full bg-primary-500"></span>
+                    </span>
+
+                    <span class="text-primary-500"> {{ session.user.role | titlecase }} </span>
+                </div>
+            </a>
+
+            <hr class="divider" />
+
+            <a
+                cdkMenuItem
+                routerLink="/settings/account"
+            >
+                {{ 'account-menu.profile' | transloco }}
+            </a>
+            <a
+                cdkMenuItem
+                routerLink="/settings/appearance"
+            >
+                {{ 'account-menu.settings' | transloco }}
+            </a>
+
+            <hr class="divider" />
+
+            <a
+                cdkMenuItem
+                href="https://github.com/juanmesa2097/angular-boilerplate/issues"
+                class="flex items-center gap-2"
+            >
+                <span class="icon-[ph--lifebuoy-duotone] text-xl"></span>
+                {{ 'account-menu.helpCenter' | transloco }}
+            </a>
+            <a
+                cdkMenuItem
+                href="https://github.com/juanmesa2097/angular-boilerplate/pulls"
+                class="flex items-center gap-2"
+            >
+                <span class="icon-[ph--git-branch-duotone] text-xl"></span>
+                {{ 'account-menu.submitFeature' | transloco }}
+            </a>
+            <a
+                cdkMenuItem
+                href="https://github.com/juanmesa2097/angular-boilerplate/discussions"
+                class="flex items-center gap-2"
+            >
+                <span class="icon-[ph--chat-dots-duotone] text-xl"></span>
+                {{ 'account-menu.openDiscussion' | transloco }}
+            </a>
+
+            <hr class="divider" />
+
+            <div class="flex w-full justify-center">
+                <app-pick-schema [displayCaptions]="false" />
+            </div>
+
+            <hr class="divider" />
+
+            <button
+                cdkMenuItem
+                class="flex items-center gap-2"
+                (click)="handleLogout()"
+            >
+                <span class="icon-[solar--logout-line-duotone] text-xl"></span>
+
+                {{ 'account-menu.logout' | transloco }}
+            </button>
+        </div>
+    </ng-template>
+</ng-container>

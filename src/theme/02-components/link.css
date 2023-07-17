@@ -1,0 +1,23 @@
+a.link {
+    @apply text-xs font-medium;
+    @apply text-primary-700 dark:text-primary-100;
+
+    &:hover {
+        @apply underline;
+        @apply text-primary-600 dark:text-primary-50;
+    }
+
+    &:focus {
+        @apply underline;
+        @apply text-primary-600 dark:text-primary-50;
+    }
+
+    &:visited {
+        @apply text-primary-800 dark:text-primary-50;
+    }
+
+    /* variants */
+    &.link-ext {
+        @apply after:content-['_↗'];
+    }
+}
