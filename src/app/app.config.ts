@@ -1,12 +1,12 @@
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { jwtInterceptor, serverErrorInterceptor } from '@lib/interceptors';
-import { routes } from './app.routes';
+import { TransferStateService } from '@lib/services/transfer-state.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideRouter(routes, withComponentInputBinding()),
+        // provideRouter(routes, withComponentInputBinding()),
+        TransferStateService,
         provideHttpClient(withInterceptors([serverErrorInterceptor, jwtInterceptor])),
     ],
 };

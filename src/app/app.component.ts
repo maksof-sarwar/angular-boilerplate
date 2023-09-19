@@ -1,22 +1,26 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '@lib/services';
-import { ThemeService } from '@lib/services/theme';
-import { LayoutHorizontalComponent } from './lib/components/layouts/layout-horizontal/layout-horizontal.component';
+import { TransferStateService } from '@lib/services/transfer-state.service';
+import { map } from 'rxjs';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterModule, LayoutHorizontalComponent],
+    imports: [CommonModule, RouterModule, HttpClientModule],
     templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-    isAuthenticated$ = inject(AuthService).isAuthenticated$;
-
-    private readonly _themeService = inject(ThemeService);
-
+    constructor(private _http: HttpClient, private transfer: TransferStateService) {}
+    cart = [];
     ngOnInit(): void {
-        this._themeService.init();
+        this.transfer
+            .init('apiData', this._http.get('https://dummyjson.com/carts').pipe(map((c: any) => c['carts'])))
+            .subscribe((c) => {
+                this.cart = c;
+            });
+
+        // this._themeService.init();
     }
 }
